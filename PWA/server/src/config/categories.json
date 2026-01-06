@@ -1,0 +1,142 @@
+
+{
+  "Bedroom": {
+    "Flooring": [
+      "Flooring: Any gaps observed between door frame & flooring / skirting",
+      "#REF!"
+    ],
+    "Doors": [
+      "#N/A",
+      "#REF!"
+    ],
+    "WIndows": [
+      "#N/A",
+      "#REF!"
+    ],
+    "Wall Finish": [
+      "#N/A",
+      "#REF!"
+    ],
+    "Electrical Work": [
+      "#N/A",
+      "#REF!"
+    ],
+    "Electrical DB Work": [
+      "#N/A",
+      "#REF!"
+    ]
+  },
+  "Bathroom": {
+    "Flooring": [
+      "Flooring (Tiles): Hollowness or debonding observed in floor tiles after fixing",
+      "#REF!"
+    ],
+    "Wall Tiles": [
+      "Wall Tiles: Tiles fixed are not sounding hollow or debonding not observed in wall tiles",
+      "#REF!"
+    ],
+    "Doors": [
+      "Doors: All types of door fittings, hinges screwed properly & operating smoothly",
+      "#REF!"
+    ],
+    "Windows/Ventillator": [
+      "Windows / Ventilator: Any windows frame & shutters bend / damaged?",
+      "#REF!"
+    ],
+    "Plumbing": [
+      "#N/A",
+      "#REF!"
+    ],
+    "Sanitary Ware": [
+      "#N/A",
+      "#REF!"
+    ],
+    "Electrical Work": [
+      "#N/A",
+      "#REF!"
+    ],
+    "Wall Finish": [
+      "#N/A",
+      "#REF!"
+    ]
+  },
+  "Balcony": {
+    "Flooring (Tiles)": [
+      "#N/A",
+      "#REF!"
+    ],
+    "Doors": [
+      "#N/A",
+      "#REF!"
+    ],
+    "Wall Finish": [
+      "Wall Finish: Surface finish of painted walls and ceiling uniform",
+      "#REF!"
+    ],
+    "Handrails/MS Grills": [
+      "Handrails / MS grills: Painting to hand railing / grills done",
+      "#REF!"
+    ],
+    "Electrical Work": [
+      "#N/A",
+      "#REF!"
+    ]
+  },
+  "Living Room": {
+    "Flooring": [
+      "#N/A"
+    ],
+    "Doors": [
+      "Doors: Door fittings are free from paint, dust and rust"
+    ],
+    "Windows": [
+      "#N/A"
+    ],
+    "Wall Finish": [
+      "#N/A"
+    ],
+    "Electrical Work": [
+      "#N/A"
+    ]
+  },
+  "Kitchen": {
+    "Flooring (Tiles)": [
+      "Flooring (Tiles): Are gaps sealing of floor tiles / between skirting & flooring tiles filled properly"
+    ],
+    "Wall Tiles": [
+      "Wall Tiles: Tiles fixed are not sounding hollow or debonding not observed in wall tiles"
+    ],
+    "Doors": [
+      "#N/A"
+    ],
+    "Windows": [
+      "#N/A"
+    ],
+    "Wall Finish": [
+      "#N/A"
+    ],
+    "Electrical Work": [
+      "#N/A"
+    ],
+    "Modular Kitchen & Kitchen Platform": [
+      "#N/A"
+    ]
+  },
+  "Utility": {
+    "Flooring (Tiles)": [
+      "#REF!"
+    ],
+    "Doors": [
+      "#REF!"
+    ],
+    "Wall Finish": [
+      "#REF!"
+    ],
+    "Electrical Work": [
+      "#REF!"
+    ],
+    "Handrails/MS Grills": [
+      "#REF!"
+    ]
+  }
+}

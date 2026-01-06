@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  INSPECTOR
+}
+
+enum InspectionStatus {
+  PENDING
+  IN_PROGRESS
+  SUBMITTED
+  FINAL
+  COMPLETED
+  REJECTED
+}
+
+model User {
+  id        String   @id
+  email     String   @unique
+  password  String
+  name      String
+  role      Role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  assignedTasks      Task[] @relation("AssignedInspector")
+  createdTasks       Task[] @relation("CreatedBy")
+  inspections        Inspection[] @relation("PerformedBy")
+  approvedInspections Inspection[] @relation("ApprovedBy")
+}
+
+model Task {
+  id                String   @id @default(uuid())
+  propertyId        String
+  clientName        String
+  clientEmail       String?
+  clientPhone       String?
+  propertyAddress   String
+  description       String?
+  
+  assignedToId      String
+  assignedTo        User     @relation("AssignedInspector", fields: [assignedToId], references: [id])
+  
+  createdById       String
+  createdBy         User     @relation("CreatedBy", fields: [createdById], references: [id])
+  
+  status            String   @default("PENDING")
+  prefillJson       Json?
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  inspections       Inspection[]
+  
+  @@unique([propertyId, assignedToId])
+}
+
+model Inspection {
+  id               String   @id @default(uuid())
+  inspectionNumber String   @unique
+  taskId           String
+  task             Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  
+  performedById    String
+  performedBy      User     @relation("PerformedBy", fields: [performedById], references: [id])
+  
+  approvedById     String?
+  approvedBy       User?    @relation("ApprovedBy", fields: [approvedById], references: [id])
+  
+  status           InspectionStatus @default(PENDING)
+  
+  // Canonical JSON - this is the source of truth
+  prefillJson      Json?      // Template with defaults
+  inspectionJson   Json?      // Post-fill submitted data
+  
+  // Derived fields - computed by backend
+  overallScore     Float?
+  severityCounts   Json?      // { critical: 0, major: 1, minor: 2, cosmetic: 0 }
+  
+  // Files & reports
+  imageUrls        Json?      // Array of image URLs
+  pdfPath          String?
+  pdfUrl           String?
+  
+  createdAt        DateTime @default(now())
+  submittedAt      DateTime?
+  approvedAt       DateTime?
+  updatedAt        DateTime @updatedAt
+  
+  auditLog         AuditLog[]
+}
+
+model AuditLog {
+  id            String   @id @default(uuid())
+  inspectionId  String
+  inspection    Inspection @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+  
+  action        String   // CREATED, MODIFIED, SUBMITTED, APPROVED, REJECTED
+  changedFields Json?    // What changed
+  changedBy     String?  // User ID
+  
+  createdAt     DateTime @default(now())
+}
+
+model PredefinedIssue {
+  id          String   @id @default(uuid())
+  roomType    String
+  category    String
+  description String
+  severity    String   // MAJOR, MINOR, COSMETIC
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([roomType, category, description])
+}
